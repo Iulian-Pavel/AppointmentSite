@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin createFlex($f-display, $f-justify, $f-align, $f-direction, $f-wrap) {
+    display: $f-display;
+    justify-content: $f-justify;
+    align-items: $f-align;
+    flex-direction: $f-direction;
+    flex-wrap: $f-wrap;
+}
+
+@mixin buttonReset {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+  }
