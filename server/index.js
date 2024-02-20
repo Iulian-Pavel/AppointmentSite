@@ -3,10 +3,14 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const UserModel = require('./models/UserModel');
 const app = express();
+const bcrypt = require('bcrypt');
+require('dotenv').config();
 const port = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+console.log("connection link: " + process.env.CONNECT_LINK);
 
 mongoose.connect(`mongodb+srv://sirbuiulianpavel:datapassword@appointment.hafyinl.mongodb.net/`, {
     usenewUrlParser: true
