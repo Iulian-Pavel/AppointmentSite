@@ -10,15 +10,15 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
-console.log("connection link: " + process.env.CONNECT_LINK);
+let CONNECTION_LINK = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.hafyinl.mongodb.net/`
 
-mongoose.connect(`mongodb+srv://sirbuiulianpavel:datapassword@appointment.hafyinl.mongodb.net/`, {
+mongoose.connect(CONNECTION_LINK, {
     usenewUrlParser: true
 })
 
 
 app.get('/', (req, res) => {
-    res.send("Hello, World!");
+    res.send("User logged in succesfully");
 });
 
 app.post('/insert', async (req, res) => {
@@ -27,7 +27,9 @@ app.post('/insert', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    const user = new UserModel({Username: username, Email: email, Password: password});
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new UserModel({Username: username, Email: email, Password: hashedPassword});
 
     try {
         await user.save();
