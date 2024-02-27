@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import Axios from "axios";
 import "./register.scss";
+import { Link } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -35,6 +35,7 @@ function Register() {
   return (
     <>
     <p>{error}</p>
+    <form>
       <h1>Register</h1>
       <input
         type="text"
@@ -55,6 +56,8 @@ function Register() {
         onChange={(e) => setEmail(e.target.value)}
       />
       <button onClick={registerUsers}>Register</button>
+      <Link to="login">Login link</Link>
+      </form>
     </>
   );
 }
