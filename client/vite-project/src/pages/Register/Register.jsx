@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "./register.scss";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { MdOutlineAccountCircle, MdEmail } from "react-icons/md";
+import { GiPadlock } from "react-icons/gi";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -24,7 +26,7 @@ function Register() {
       setError("");
     } catch (err) {
       console.log(err);
-      if(err.response) {
+      if (err.response) {
         setError(err.response.data);
       } else {
         setError("An error occured, please try again later");
@@ -34,30 +36,41 @@ function Register() {
 
   return (
     <>
-    <p>{error}</p>
-    <form>
-      <h1>Register</h1>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="email"
-        name="email"
-        id="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button onClick={registerUsers}>Register</button>
-      <Link to="login">Login link</Link>
-      </form>
+      <div className="register">
+        <div className="register-right">
+          <p>{error}</p>
+          <h1>Creare cont</h1>
+          <MdOutlineAccountCircle  style={{scale: '1.2'}}/>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Nume"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <GiPadlock style={{scale: '1.2'}}/>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Parola"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <MdEmail style={{scale: '1.2'}}/>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button onClick={registerUsers}>Inregistrare</button>
+        </div>
+        <div className="register-left">
+          <h1>Pentru a va loga, faceti click pe acest link</h1>
+          <Link to="login">Login link</Link>
+        </div>
+      </div>
     </>
   );
 }
