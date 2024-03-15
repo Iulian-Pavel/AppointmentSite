@@ -11,7 +11,7 @@
     border: 1px solid blue;
     width: 50%;
     height: 80vh;
-    color: rgb(58,174,161);
+    color: rgb(58, 174, 161);
     letter-spacing: 0.1em;
     input {
       height: 3em;
@@ -26,14 +26,30 @@
       text-align: center;
       padding: 1em;
       width: 10em;
-      background-color: rgb(58,174,161);
+      background-color: rgb(58, 174, 161);
       border-radius: 2em;
       font-size: 1em;
       color: white;
       cursor: pointer;
     }
+    a {
+      text-align: center;
+      padding: 1em;
+      width: 10em;
+      background-color: rgb(58, 174, 161);
+      border-radius: 2em;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
   }
   .register-left {
+    @include createFlex(flex, center, center, column, wrap);
+    gap: 4em;
+    height: 80vh;
     border: 1px solid black;
+    text-align: center;
+    // a - the Link component
   }
 }
