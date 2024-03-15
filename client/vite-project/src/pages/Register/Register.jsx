@@ -65,10 +65,8 @@ function Register() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button onClick={registerUsers}>Inregistrare</button>
-        </div>
-        <div className="register-left">
-          <h1>Pentru a va loga, faceti click pe acest link</h1>
-          <Link to="login">Login link</Link>
+          <p>Sau</p>
+          <Link to="login">Logati-va</Link>
         </div>
       </div>
     </>
