@@ -10,14 +10,14 @@ const AppointmentSchema = new mongoose.Schema({
 
   Date: {
     type: Date,
-    unique: true,
+    unique: true
   },
   Time: {
     type: String,
     unique: true
   },
-  user: {
-    type: Schema.Types.ObjectId,
+  Email: {
+    type: Schema.Types.String,
     ref: "User"
   }
 });
