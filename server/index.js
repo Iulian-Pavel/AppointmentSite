@@ -63,13 +63,15 @@ app.post("/login", async (req, res) => {
 
     if (!user) {
       console.log("user not found");
+      res.status(500).json({error: "user not found"});
       return;
     }
 
     const isPasswordValid = await bcrypt.compare(passwordLogin, user.Password);
     if (!isPasswordValid) {
       console.log("password is not valid");
-      res.status(500).send("password is not valid");
+      // res.json({error: "password is not valid"});
+      res.status(500).json({error: "password is not valid"});
       return;
     } 
 
@@ -92,26 +94,31 @@ app.post("/login", async (req, res) => {
 // });
 
 app.post("/createAppointment", async (req, res) => {
-
   const username = req.body.username;
-  const date = req.body.date.toString().split("T")[0];
+  const date = req.body.date;
   const time = req.body.time;
   const title = req.body.appointmentTitle;
 
   try {
-    const user = await UserModel.findOne({Username: username});
-    console.log(username);
-    console.log(user);
+    const user = await UserModel.findOne({ Username: username });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     const newAppointment = new AppointmentModel({
       title: title,
       Date: date,
       Time: time,
-      user: user._id
+      Email: user.Email
     });
 
     await newAppointment.save();
-  } catch(err) {
+    console.log("Appointment created successfully");
+    res.status(200).json({ message: "Appointment created successfully" });
+  } catch (err) {
     console.log(`Error creating appointment: ${err}`);
+    res.status(500).json({ error: "Error creating appointment" });
   }
 });
 
