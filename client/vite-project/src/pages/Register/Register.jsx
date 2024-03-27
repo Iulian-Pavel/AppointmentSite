@@ -36,8 +36,8 @@ function Register() {
 
   return (
     <>
-      <div className="register">
-        <div className="register-right">
+      <div className="register-component">
+        <div className="register">
           <p>{error}</p>
           <h1>Creare cont</h1>
           <MdOutlineAccountCircle  style={{scale: '1.2'}}/>
